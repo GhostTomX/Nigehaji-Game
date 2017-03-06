@@ -1,0 +1,21 @@
+body{
+    background-image: url('/Media/images/House_1.png');
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+#hiramasa {
+    position: absolute;
+    background-image: url('/Media/images/hi.png');
+    background-repeat: no-repeat;
+    width:40px;
+    height: 40px;
+    z-index: 2;
+}
+
+#mikuri {
+    background-image: url('/Media/images/mi.png');
+    background-repeat: no-repeat;
+    z-index: 2;
+    width:40px;
+    height: 40px;
+}
