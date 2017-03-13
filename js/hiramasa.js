@@ -1,19 +1,77 @@
  $(document).ready(function () {
-             var hi = $("#hiramasa");
-             var position_hi = hi.position();
-             console.log(position_hi);
-             var mi = $("#mikuri");
-             var position_hi = mi.position();
-             console.log(position_hi);
-             $(document).keydown(function (event) {
-                     if (event.keyCode == 40 && position_hi.top>0 ) {
-                         console.log(position_hi.top);
-                        position_hi.top= position_hi.top+20;
-                         
+     var name = "this windows";
+     var hi = new Person("#hiramasa");
+     var mi = new Person("#mikuri");
+     console.log(hi.position);
+     console.log(mi.position);
+     personMoveControl(hi);
 
-                         
-                         $('#hiramasa').animate({'top':position_hi.top+'px'},"fast");
-//                         $('#hiramasa').css({'top':position_hi.top+'px'});
-                         console.log(position_hi.top);
-                     } else if (event.keyCode == 39) {};
-             });});
+     function personMoveControl(obj) {
+         $(document).keydown(function (event) {
+             obj.positionValueTest();
+             console.log(obj.position);
+             console.log(obj.position_top);
+             switch (event.keyCode) {
+             case 40: // down
+                 if (obj.position_down) {
+                     obj.position.top = obj.position.top + 20;
+                     obj.name.animate({
+                         'top': obj.position.top + 'px'
+                     }, "fast");
+                 }
+                 break;
+
+             case 38: //up
+                 if (obj.position_top) {
+                     obj.position.top = obj.position.top - 20;
+                     obj.name.animate({
+                         'top': obj.position.top + 'px'
+                     }, "fast");
+                 }
+                 break;
+
+             case 39: //right
+                 if (obj.position_right) {
+                     obj.position.left = obj.position.left + 20;
+                     obj.name.animate({
+                         'left': obj.position.left + 'px'
+                     }, "fast");
+                 }
+                 break;
+
+             case 37:
+                 if (obj.position_left) {
+                     obj.position.left = obj.position.left - 20;
+                     obj.name.animate({
+                         'left': obj.position.left + 'px'
+                     }, "fast");
+                 }
+                 break;
+             };
+         });
+     }
+
+
+     function Person(name) {
+         this.name = $(name);
+         this.position = this.name.position();
+         this.positionValueTest = function () {
+             this.position_top = true;
+             this.position_down = true;
+             this.position_left = true;
+             this.position_right = true;
+             if (this.position.top <= 8) {
+                 this.position_top = false;
+             }
+             if (this.position.left <= 8) {
+                 this.position_left = false;
+             }
+             if (this.position.top > 548) {
+                 this.position_down = false;
+             }
+             if (this.position.left > 968) {
+                 this.position_right = false;
+             }
+         };
+     };
+ });
