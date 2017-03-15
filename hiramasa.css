@@ -10,6 +10,8 @@ body{
     width:40px;
     height: 40px;
     z-index: 2;
+    left:468px;
+    top: 128px;/* 8+n*20*/  
 }
 
 #mikuri {

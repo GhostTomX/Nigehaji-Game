@@ -9,7 +9,7 @@
      function personMoveControl(obj) {
          $(document).keydown(function (event) {
              obj.positionValueTest();
-             console.log(obj.position.top, obj.position.left);
+             console.log(obj.position.left, obj.position.top);
              switch (event.keyCode) {
              case 40: // down
                  if (obj.position_down) {
@@ -69,24 +69,45 @@
              if (this.position.top > 548) {
                  this.position_down = false;
              }
-             if (this.position.left > 968) {
-                 this.position_right = false;
-             }
-             //House structure limitation according to position.left
-             if ((this.position.left === 68 & this.position.top < 308) ||
-                     (this.position.left === 68 & this.position.top > 508) ||
-                 (this.position.left === 308 & this.position.top < 248))
-              { //  ベランダ    
+             if (this.position.left > 928) {
                  this.position_right = false;
              }
 
+             //House structure limitation according to position.left
+             if (
+                 (this.position.left === 68 & this.position.top < 308) ||
+                 (this.position.left === 68 & this.position.top > 508) ||
+                 (this.position.left === 128 & this.position.top > 508) ||
+                 (this.position.left === 288 & this.position.top === 228) ||
+                 (this.position.left === 288 & this.position.top === 248) ||
+                 (this.position.left === 308 & this.position.top < 248) ||
+                 ((this.position.left === 468 & this.position.top < 548) &&
+                     (this.position.left === 468 & this.position.top > 288)) ||
+                 (this.position.left === 528 & this.position.top === 128) ||
+                 (this.position.left === 528 & this.position.top === 148) ||
+                 (this.position.left === 568 & this.position.top < 168) ||
+                 (this.position.left === 668 & this.position.top === 228) ||
+                 (this.position.left === 728 & this.position.top === 88) ||
+                 (this.position.left === 748 & this.position.top < 88) ||
+                 (this.position.left === 788 & this.position.top > 308) ||
+                 (this.position.left === 908 & this.position.top === 88)
+             ) {
+                 this.position_right = false;
+             }
 
              if ((this.position.left === 88 & this.position.top === 308) ||
-                 ((this.position.left >= 108 & this.position.top === 268) &
-                     (this.position.left <= 208 & this.position.top === 268))
+                 ((this.position.left > 88 & this.position.top === 268) &&
+                     (this.position.left < 228 & this.position.top === 268)) ||
+                 ((this.position.left > 288 & this.position.top === 268) &&
+                     (this.position.left < 408 & this.position.top === 268)) ||
+                 ((this.position.left > 388 & this.position.top === 168) &&
+                     (this.position.left < 468 & this.position.top === 168)) ||
+                 ((this.position.left > 528 & this.position.top === 168) &&
+                     (this.position.left < 608 & this.position.top === 168))
              ) {
                  this.position_top = false;
              }
+             console.log(this.position_top);
 
 
              if (this.position.left === 88 & this.position.top === 508) { //  ベランダ ドア   
@@ -95,11 +116,22 @@
 
 
              if ((this.position.left === 108 & this.position.top < 308) ||
-                 (this.position.left === 108 & this.position.top > 508)) { //  ベランダ    
+                 (this.position.left === 108 & this.position.top > 508) ||
+                 (this.position.left === 328 & this.position.top > 508) ||
+                 ((this.position.left === 408 & this.position.top < 268) &&
+                     (this.position.left === 408 & this.position.top > 128)) ||
+                 (this.position.left === 468 & this.position.top === 128) ||
+                 (this.position.left === 468 & this.position.top === 148) ||
+                 (this.position.left === 608 & this.position.top < 168) ||
+                 ((this.position.left === 668 & this.position.top < 548) &&
+                     (this.position.left === 668 & this.position.top > 288)) ||
+                 (this.position.left === 668 & this.position.top === 88) ||
+                 (this.position.left === 808 & this.position.top < 88) ||
+                 (this.position.left === 848 & this.position.top === 88) ||
+                 (this.position.left === 908 & this.position.top > 308)
+             ) {
                  this.position_left = false;
              }
-
-
 
 
          };
