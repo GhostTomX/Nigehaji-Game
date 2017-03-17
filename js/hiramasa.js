@@ -11,41 +11,41 @@
              obj.positionValueTest();
              console.log(obj.position.left, obj.position.top);
              switch (event.keyCode) {
-             case 40: // down
-                 if (obj.position_down) {
-                     obj.position.top = obj.position.top + 20;
-                     obj.name.animate({
-                         'top': obj.position.top + 'px'
-                     }, "fast");
-                 }
-                 break;
+                 case 40: // down
+                     if (obj.position_down) {
+                         obj.position.top = obj.position.top + 20;
+                         obj.name.animate({
+                             'top': obj.position.top + 'px'
+                         }, "fast");
+                     }
+                     break;
 
-             case 38: //up
-                 if (obj.position_top) {
-                     obj.position.top = obj.position.top - 20;
-                     obj.name.animate({
-                         'top': obj.position.top + 'px'
-                     }, "fast");
-                 }
-                 break;
+                 case 38: //up
+                     if (obj.position_top) {
+                         obj.position.top = obj.position.top - 20;
+                         obj.name.animate({
+                             'top': obj.position.top + 'px'
+                         }, "fast");
+                     }
+                     break;
 
-             case 39: //right
-                 if (obj.position_right) {
-                     obj.position.left = obj.position.left + 20;
-                     obj.name.animate({
-                         'left': obj.position.left + 'px'
-                     }, "fast");
-                 }
-                 break;
+                 case 39: //right
+                     if (obj.position_right) {
+                         obj.position.left = obj.position.left + 20;
+                         obj.name.animate({
+                             'left': obj.position.left + 'px'
+                         }, "fast");
+                     }
+                     break;
 
-             case 37:
-                 if (obj.position_left) {
-                     obj.position.left = obj.position.left - 20;
-                     obj.name.animate({
-                         'left': obj.position.left + 'px'
-                     }, "fast");
-                 }
-                 break;
+                 case 37:
+                     if (obj.position_left) {
+                         obj.position.left = obj.position.left - 20;
+                         obj.name.animate({
+                             'left': obj.position.left + 'px'
+                         }, "fast");
+                     }
+                     break;
              };
          });
      }
@@ -87,6 +87,7 @@
                  (this.position.left === 528 & this.position.top === 148) ||
                  (this.position.left === 568 & this.position.top < 168) ||
                  (this.position.left === 668 & this.position.top === 228) ||
+                 (this.position.left === 668 & this.position.top === 248) ||
                  (this.position.left === 728 & this.position.top === 88) ||
                  (this.position.left === 748 & this.position.top < 88) ||
                  (this.position.left === 788 & this.position.top > 308) ||
@@ -103,20 +104,48 @@
                  ((this.position.left > 388 & this.position.top === 168) &&
                      (this.position.left < 468 & this.position.top === 168)) ||
                  ((this.position.left > 528 & this.position.top === 168) &&
-                     (this.position.left < 608 & this.position.top === 168))
+                     (this.position.left < 608 & this.position.top === 168)) ||
+                 ((this.position.left > 468 & this.position.top === 548) &&
+                     (this.position.left < 668 & this.position.top === 548)) ||
+                 ((this.position.left > 588 & this.position.top === 108) &&
+                     (this.position.left < 668 & this.position.top === 108)) ||
+                 ((this.position.left > 728 & this.position.top === 108) &&
+                     (this.position.left < 848 & this.position.top === 108)) ||
+                 (this.position.left > 908 & this.position.top === 108) ||
+                 (this.position.left > 668 & this.position.top === 268)
              ) {
                  this.position_top = false;
              }
              console.log(this.position_top);
 
 
-             if (this.position.left === 88 & this.position.top === 508) { //  ベランダ ドア   
-                 this.position_down = false;
-             }
+             if ((this.position.left === 88 & this.position.top === 508) ||
+                 ((this.position.left > 88 & this.position.top === 208) &&
+                     (this.position.left < 228 & this.position.top === 208)) ||
+                 ((this.position.left > 288 & this.position.top === 208) &&
+                     (this.position.left < 408 & this.position.top === 208)) ||
+                 (this.position.left > 668 & this.position.top === 208) ||
+                 (this.position.left < 668 & this.position.top === 68) ||
+                 ((this.position.left > 728 & this.position.top === 68) &&
+                     (this.position.left < 848 & this.position.top === 68)) ||
+                 (this.position.left > 908 & this.position.top === 68) ||
+                 ((this.position.left > 468 & this.position.top === 288) &&
+                     (this.position.left < 668 & this.position.top === 288)) ||
+                 ((this.position.left > 788 & this.position.top === 308) &&
+                     (this.position.left < 908 & this.position.top === 308)) ||
+                 ((this.position.left > 128 & this.position.top === 508) &&
+                     (this.position.left < 328 & this.position.top === 508))
+                
+                ) 
+             { //  ベランダ ドア   
+                     this.position_down = false;
+                 }
 
 
              if ((this.position.left === 108 & this.position.top < 308) ||
                  (this.position.left === 108 & this.position.top > 508) ||
+                 (this.position.left === 228 & this.position.top === 228) ||
+                 (this.position.left === 228 & this.position.top === 248) ||
                  (this.position.left === 328 & this.position.top > 508) ||
                  ((this.position.left === 408 & this.position.top < 268) &&
                      (this.position.left === 408 & this.position.top > 128)) ||
