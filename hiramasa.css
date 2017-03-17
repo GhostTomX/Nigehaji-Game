@@ -10,14 +10,17 @@ body{
     width:40px;
     height: 40px;
     z-index: 2;
-    left:128px;
-    top: 328px;/* 8+n*20*/  
+    left:908px;
+    top: 368px;/* 8+n*20*/  
 }
 
 #mikuri {
+    position: absolute;
     background-image: url('/Media/images/mi.png');
     background-repeat: no-repeat;
-    z-index: 2;
     width:40px;
     height: 40px;
+    z-index: 2;
+    left:108px;
+    top: 408px;/* 8+n*20*/ 
 }
