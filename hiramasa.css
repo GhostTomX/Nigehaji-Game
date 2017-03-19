@@ -9,9 +9,9 @@ body{
     background-repeat: no-repeat;
     width:40px;
     height: 40px;
-    z-index: 2;
-    left:908px;
-    top: 368px;/* 8+n*20*/  
+    z-index: 1;
+    left:408px;
+    top: 448px;/* 8+n*20*/  
 }
 
 #mikuri {
@@ -20,7 +20,19 @@ body{
     background-repeat: no-repeat;
     width:40px;
     height: 40px;
+    z-index: 1;
+    left:8px;
+    top: 428px;/* 8+n*20*/ 
+}
+
+#conversation {
+    position: absolute;
+    margin-top: 400px;
+    width : 988px;
+    height: 200px;
+    background-color: white;
+    border-style: solid;
+    border-color: black;
     z-index: 2;
-    left:108px;
-    top: 408px;/* 8+n*20*/ 
+    visibility:hidden;
 }

@@ -12,10 +12,11 @@ var file_content;
 //var webPath = 'public';
 
 var server = http.createServer(function (req, res) {
-    let url_path = url.parse(req.url);
+    let url_path = url.parse(req.url,true);
     console.log('path:' + url_path);
     let pathname = url_path.pathname;
     console.log('pathname:' + pathname);
+    console.log(url_path.query);
     if (pathname === "/" || pathname === "/index.htm") {
         pathname = 'index.html';
     }
