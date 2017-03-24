@@ -5,6 +5,47 @@
      personMoveControl(hi, mi);
      console.log(hi.position);
      console.log(mi.position);
+     touchConversation(hi);
+     
+     function touchConversation(obj, refobj) {
+         var counterOfConv = 0;
+         $(document).keydown(function (event) {
+             if (event.keyCode === 32) { //space touch conversation
+                 obj.conversationTest();
+                 console.log(obj.conversationSignal);
+                 if (obj.conversationSignal) {
+                     if (!counterOfConv) {
+                         
+                         $("#conversation").css("visibility", "visible");
+                         var xhr = new XMLHttpRequest();
+                         var url = "server.js"
+                         url = addURLParam(url, "left", obj.position.left);
+                         url = addURLParam(url, "top", obj.position.top);
+                         xhr.open("get", url, false);
+                         xhr.send(null);
+                         console.log(xhr.responseText);
+                         words = xhr.responseText.split("/"); //words is a global var
+                         $("#conversation").empty();
+//                         document.getElementById("#conversation").innerHTML=words[0];
+                         $("#conversation").append(words[0]);
+                         counterOfConv += 1;
+                     } else {
+                         console.log(counterOfConv);
+                         console.log(words.length);
+                         if (counterOfConv < words.length) {
+                             $("#conversation").empty();
+                             $("#conversation").css("visibility", "visible");
+                             $("#conversation").append(words[counterOfConv]);
+                             counterOfConv += 1;
+                         } else {
+                             $("#conversation").css("visibility", "hidden");
+                         }
+                     }
+                 }
+             }
+         })
+     }
+
 
 
      function personMoveControl(obj, refobj) {
@@ -48,20 +89,7 @@
                          }, "fast");
                      }
                      break;
-                 case 32: //space touch conversation
-                     obj.conversationTest();
-                     console.log(obj.conversationSignal);
-                     if (obj.conversationSignal) {
-                         $("#conversation").css("visibility", "visible");
-                         var xhr = new XMLHttpRequest();
-                         var url = "server.js"
-                         url = addURLParam(url,"left",obj.position.left);
-                         url = addURLParam(url,"top",obj.position.top);
-                         xhr.open("get", url, false);
-                         xhr.send(null);
-                                                  console.log(url);
-                     }
-                     break;
+
              };
          });
      }
@@ -180,7 +208,10 @@
                  ((this.position.left > 288 & this.position.top === 208) &&
                      (this.position.left < 408 & this.position.top === 208)) ||
                  (this.position.left > 668 & this.position.top === 208) ||
-                 (this.position.left < 668 & this.position.top === 68) ||
+                 ((this.position.left > 328 & this.position.top === 108) &&
+                     (this.position.left < 468 & this.position.top === 108)) ||
+                 ((this.position.left > 588 & this.position.top === 68) &&
+                     (this.position.left < 668 & this.position.top === 68)) ||
                  ((this.position.left > 728 & this.position.top === 68) &&
                      (this.position.left < 848 & this.position.top === 68)) ||
                  (this.position.left > 908 & this.position.top === 68) ||
@@ -201,6 +232,7 @@
                  (this.position.left === 228 & this.position.top === 228) ||
                  (this.position.left === 228 & this.position.top === 248) ||
                  (this.position.left === 328 & this.position.top > 508) ||
+                 (this.position.left === 368 & this.position.top < 128) ||
                  ((this.position.left === 408 & this.position.top < 268) &&
                      (this.position.left === 408 & this.position.top > 128)) ||
                  (this.position.left === 468 & this.position.top === 128) ||
