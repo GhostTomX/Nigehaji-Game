@@ -6,7 +6,7 @@
      console.log(hi.position);
      console.log(mi.position);
      touchConversation(hi);
-     
+
      function touchConversation(obj, refobj) {
          var counterOfConv = 0;
          $(document).keydown(function (event) {
@@ -15,7 +15,6 @@
                  console.log(obj.conversationSignal);
                  if (obj.conversationSignal) {
                      if (!counterOfConv) {
-                         
                          $("#conversation").css("visibility", "visible");
                          var xhr = new XMLHttpRequest();
                          var url = "server.js"
@@ -26,7 +25,7 @@
                          console.log(xhr.responseText);
                          words = xhr.responseText.split("/"); //words is a global var
                          $("#conversation").empty();
-//                         document.getElementById("#conversation").innerHTML=words[0];
+                         //                         document.getElementById("#conversation").innerHTML=words[0];
                          $("#conversation").append(words[0]);
                          counterOfConv += 1;
                      } else {
@@ -38,7 +37,10 @@
                              $("#conversation").append(words[counterOfConv]);
                              counterOfConv += 1;
                          } else {
+                             counterOfConv = 0;
+                             $("#conversation").empty();
                              $("#conversation").css("visibility", "hidden");
+                             
                          }
                      }
                  }

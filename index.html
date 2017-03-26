@@ -1,15 +1,145 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="hiramasa.css" type="text/css">
-    <meta charset="UTF-8">
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="js/hiramasa.js"></script>
-    <title>Document</title>
+  <meta charset="UTF-8">
+    <style>
+        video {
+            position: absolute;
+            z-index: 1;
+            filter: opacity(80%);
+            position: absolute;
+        }
+        
+        form {
+            color: white;
+            left: 1050px;
+            top: 200px;
+            position: absolute;
+            z-index: 3;
+            margin: 0 auto;
+            width: 500px;
+            padding-top: 40px;
+            color: white;
+        }
+        
+        label,
+        input,
+        textarea {
+            display: block;
+        }
+        
+        input,
+        textarea {
+            margin-top: 5px;
+            width: 200px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            padding: 10px;
+            font-family: 'Sniglet', cursive;
+            font-size: 1em;
+            color: #676767;
+            transition: border 0.5s;
+            -webkit-transition: border 0.5s;
+            -moz-transition: border 0.5s;
+            -o-transition: border 0.5s;
+            border: solid 3px #98d4f3;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        
+        input:focus,
+        textarea:focus {
+            border: solid 3px #77bde0;
+        }
+        
+        textarea {
+            height: 100px;
+            resize: none;
+            overflow: auto;
+        }
+        
+        input[type="submit"] {
+            background-color: white;
+            color: black;
+            height: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            font-size: 1.29em;
+            font-family: 'Sniglet', cursive;
+            -webkit-transition: background-color 0.5s;
+            -moz-transition: background-color 0.5s;
+            -o-transition: background-color 0.5s;
+            transition: background-color 0.5s;
+        }
+        
+        input[type="submit"]:hover {
+            background-color:aliceblue;
+        }
+        
+        label {
+            font-size: 1.5em;
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+        
+        .formgroup,
+        .formgroup-active,
+        .formgroup-error {
+            background-repeat: no-repeat;
+            background-position: right bottom;
+            background-size: 10.5%;
+            transition: background-image 0.7s;
+            -webkit-transition: background-image 0.7s;
+            -moz-transition: background-image 0.7s;
+            -o-transition: background-image 0.7s;
+            width: 566px;
+            padding-top: 2px;
+        }
+        
+        .formgroup {
+            background-image: url('http://www.geertjanhendriks.nl/codepen/form/pixel.gif');
+        }
+        
+        .formgroup-active {
+            background-image: url('http://www.geertjanhendriks.nl/codepen/form/octo.png');
+        }
+        
+        .formgroup-error {
+            background-image: url('http://www.geertjanhendriks.nl/codepen/form/octo-error.png');
+            color: red;
+        }
+        #headline {
+            position:absolute;
+            z-index: 3;
+            left:1050px;
+            top:150px;
+        }
+    </style>
 </head>
 <body>
-    <div id = "hiramasa"></div>
-    <div id = "mikuri"></div>
-    <div id = "conversation"></div>
+    <video controls="controls" autoplay="autoplay" loop="loop">
+        <source src="Media/01.mp4" type="video/mp4" /> Your browser does not support the video tag.
+    </video>
+    <div id = "headline"><img src="Media/images/headline.jpg" height = "100px";></div>
+    <form id="waterform" method="post" action = "home.html">
+
+        <div class="formgroup" id="name-form">
+            <label for="name">用户名</label>
+            <input type="text" name="user" value="admin">
+        </div>
+
+        <div class="formgroup" id="email-form">
+            <label for="email">密码</label>
+            <input type="password" name="pw" value="admin">
+        </div>
+        <input type="submit" value="登录" href = "index.html"/>
+    </form>
+
+
+
+
 </body>
+
 </html>
