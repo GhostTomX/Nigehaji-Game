@@ -7,7 +7,7 @@ var path = require('path');
 var querystring = require('querystring');
 
 var MongoClient = require('mongodb').MongoClient;
-var DB_CONN_STR = 'mongodb://r04522839-hw2:FAmQouH05kGxi77Uga7pDwEDBu9EGJmEFAhqUQdi695cSRcvweGfUNzWBvkzuSZr37vamEonjgCJl3koE7YkVA==@r04522839-hw2.documents.azure.com:10250/NigehajiGame?ssl=true';
+var DB_CONN_STR = 'mongodb://r04522839proj:Duhwg3cGLh2PeYc7MrwDWA8XAmdtlyhjC4o6hYgKPIH2phdkBG03arJuOzIiHoRfWxeEcwkFrMQ7F5UTZZpTyg==@r04522839proj.documents.azure.com:10250/NigehajiGame?ssl=true';
 var file_content;
 
 //var webPath = 'public';
