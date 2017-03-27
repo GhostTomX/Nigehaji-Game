@@ -7,29 +7,47 @@ var path = require('path');
 var querystring = require('querystring');
 
 var MongoClient = require('mongodb').MongoClient;
-var DB_CONN_STR = 'mongodb://r04522839proj:Duhwg3cGLh2PeYc7MrwDWA8XAmdtlyhjC4o6hYgKPIH2phdkBG03arJuOzIiHoRfWxeEcwkFrMQ7F5UTZZpTyg==@r04522839proj.documents.azure.com:10250/NigehajiGame?ssl=true';
+const DB_CONN_STR = 'mongodb://r04522839proj:Duhwg3cGLh2PeYc7MrwDWA8XAmdtlyhjC4o6hYgKPIH2phdkBG03arJuOzIiHoRfWxeEcwkFrMQ7F5UTZZpTyg==@r04522839proj.documents.azure.com:10250/NigehajiGame?ssl=true';
 var file_content;
+var USERNAME;
+var PASSWORD;
+var S_VALUE = 0;
 
 //var webPath = 'public';
 MongoClient.connect(DB_CONN_STR, function (err, db) {
     console.log("连接成功！")
-        // mongodb 查询，插入函数
-    var findDocuments = function (db, left, callback) {
-        var collection = db.collection('Home');
-        collection.find({
-            'left': left
-        }).toArray(function (err, docs) {
+    // mongodb 查询，插入函数
+    var findDocument = function (db, collectionName, query1, value1, callback) {
+        var query = {};
+        query[query1] = value1;
+        var collection = db.collection(collectionName);
+        collection.find(query).toArray(function (err, docs) {
             callback(docs);
         });
     }
 
 
-    var insertDocuments = function (db, callback) {
-        var collection = db.collection('Userinfo');
-        collection.insertOne({
-            a: "b"
-        }, function (err, docs) {
-            callback();
+    var insertDocuments = function (db, collectionName, keyInfo1, valueInfo1, keyInfo2, valueInfo2, keyInfo3, valueInfo3, callback) {
+        if (arguments[4] === null) {
+            var query = {};
+            query[keyInfo1] = valueInfo1;
+        } else if (arguments[6] === null) {
+
+            var query = {};
+            query[keyInfo1] = valueInfo1;
+            query[keyInfo2] = valueInfo2;
+        } else {
+            //    arguments[7] === 0
+            var query = {};
+            query[keyInfo1] = valueInfo1;
+            query[keyInfo2] = valueInfo2;
+            query[keyInfo3] = valueInfo3;
+        }
+        var collection = db.collection(collectionName);
+        //        var query = {};
+        //        query[keyInfo] = valueInfo;
+        collection.insertOne(query, function (err, docs) {
+            callback(docs);
         });
     }
 
@@ -45,14 +63,29 @@ MongoClient.connect(DB_CONN_STR, function (err, db) {
             pathname = "\home.html";
             postData += postDataChunk;
             var params = querystring.parse(postData); //解析 HEADER 中的数据
-            insertDocuments(db, function (docs) {
-                console.log("Post : insert 结束");
+            //            console.log(params);
+            USERNAME = params.user;
+            PASSWORD = params.pw;
+            findDocument(db, 'UserInfo', 'Username', params.user, function (docs) {
+                console.log(docs.length);
+                console.log("验证用户名是否存在");
+                console.log("S_VALUE"+S_VALUE);
+                if (docs.length === 0) {
+                    insertDocuments(db, 'UserInfo', 'Username', USERNAME, 'Passward', PASSWORD, 'SpecialValue', S_VALUE, function (docs) {
+                        console.log("用户名之前不存在，已新建账号");
+                    });
+                } else {
+                    console.log(docs);
+                    S_VALUE = docs[0].SpecialValue;
+                    console.log("S_VALUE"+S_VALUE);
+                    console.log("用户名已存在，载入之前进度");
+                }
             });
         })
-
+        //=========cookie operation=======//
         //get 有query
         if (typeof (url_path.query.left) === 'string') {
-            findDocuments(db, 448, function (docs) {
+            findDocument(db, 'Home', 'left', 448, function (docs) {
                 res.write(docs[0].content);
                 res.end();
             })
@@ -73,6 +106,9 @@ MongoClient.connect(DB_CONN_STR, function (err, db) {
                     res.end();
                     return;
                 }
+                res.writeHead(200, {
+                    'Set-Cookie': ['Username =' + USERNAME, 'SpecialValue=' + S_VALUE]
+                });
                 res.write(content);
                 res.end();
             });

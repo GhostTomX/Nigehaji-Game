@@ -36,3 +36,14 @@ body{
     z-index: 2;
     visibility:hidden;
 }
+
+#state {
+    position: absolute;
+    margin-top: 600px;
+    width : 970px;
+    height: 200px;
+    background-color: white;
+    border-width: thick;
+    border-style: solid;
+    border-color: black;
+}

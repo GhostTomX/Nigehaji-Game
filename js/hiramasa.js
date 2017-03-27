@@ -6,7 +6,15 @@
      console.log(hi.position);
      console.log(mi.position);
      touchConversation(hi);
-
+     stateShow();
+     function stateShow(){
+         alert(document.cookie);
+         var cookies = document.cookie.split(';');
+         var username = cookies[0].split('=')[1];
+         var specialvalue = cookies[1].split('=')[1];
+         $("#state").append("<h1>"+username+"</h1>");
+         $("#state").append("<h1>好感值="+specialvalue+"</h1>");
+     }
      function touchConversation(obj, refobj) {
          var counterOfConv = 0;
          $(document).keydown(function (event) {
