@@ -75,6 +75,7 @@ $(document).ready(function () {
                         console.log(xhr.responseText);
                         words = xhr.responseText.split("/"); //words is a global var
                         $("#conversation").empty();
+                        $("#hiconversation").css("visibility", "visible");
                         //                         document.getElementById("#conversation").innerHTML=words[0];
                         $("#conversation").append(words[0]);
                         counterOfConv += 1;
@@ -86,7 +87,13 @@ $(document).ready(function () {
                             $("#conversation").css("visibility", "visible");
                             $("#conversation").append(words[counterOfConv]);
                             counterOfConv += 1;
-
+                            if (counterOfConv%2 === 1){
+                                $("#hiconversation").css("visibility", "visible");
+                                $("#miconversation").css("visibility", "hidden");
+                            }else{
+                                $("#miconversation").css("visibility", "visible");
+                                $("#hiconversation").css("visibility", "hidden");
+                            }
                         } else {
                             SPECIALVALUE += 1;
                             specialValueFresh()
@@ -94,6 +101,7 @@ $(document).ready(function () {
                             counterOfConv = 0;
                             $("#conversation").empty();
                             $("#conversation").css("visibility", "hidden");
+                            $("#miconversation").css("visibility", "hidden");
 
                         }
                     }

@@ -58,3 +58,27 @@ body{
     border-style: solid;
     border-color: black;
 }
+
+#hiconversation {
+    position: absolute;
+/*    margin-top: 100px;*/
+    width : 350px;
+    height: 400px;
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    z-index:1;
+    visibility:hidden;
+}
+
+#miconversation {
+    position: absolute;
+    margin-left: 640px;
+    width : 350px;
+    height: 400px;
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    z-index:1;
+    visibility:hidden;
+}
