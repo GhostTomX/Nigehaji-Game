@@ -24,9 +24,22 @@ MongoClient.connect(DB_CONN_STR, function (err, db) {
         collection.find(query).toArray(function (err, docs) {
             callback(docs);
         });
-    }
+    };
 
-
+    var updateDocument = function (db, collectionName, query1, value1, query2, value2, callback) {
+        var query = {};
+        query[query1] = value1;
+        var set2 = {};
+        set2[query2] = value2;
+        var set = {
+            $set: set2
+        };
+        var collection = db.collection(collectionName);
+        collection.updateOne(query, set,
+            function (err, docs) {
+                callback(docs);
+            });
+    };
     var insertDocuments = function (db, collectionName, keyInfo1, valueInfo1, keyInfo2, valueInfo2, keyInfo3, valueInfo3, callback) {
         if (arguments[4] === null) {
             var query = {};
@@ -49,14 +62,14 @@ MongoClient.connect(DB_CONN_STR, function (err, db) {
         collection.insertOne(query, function (err, docs) {
             callback(docs);
         });
-    }
+    };
 
 
     var server = http.createServer(function (req, res) {
         console.log("==================================");
         let url_path = url.parse(req.url, true);
         let pathname = url_path.pathname;
-        console.log('pathname:' + pathname);
+        //        console.log('pathname:' + pathname);
         var postData = '';
         //post 触发
         req.addListener("data", function (postDataChunk) {
@@ -66,10 +79,12 @@ MongoClient.connect(DB_CONN_STR, function (err, db) {
             //            console.log(params);
             USERNAME = params.user;
             PASSWORD = params.pw;
+            console.log(USERNAME);
+            console.log(PASSWORD);
             findDocument(db, 'UserInfo', 'Username', params.user, function (docs) {
                 console.log(docs.length);
                 console.log("验证用户名是否存在");
-                console.log("S_VALUE"+S_VALUE);
+                console.log("S_VALUE" + S_VALUE);
                 if (docs.length === 0) {
                     insertDocuments(db, 'UserInfo', 'Username', USERNAME, 'Passward', PASSWORD, 'SpecialValue', S_VALUE, function (docs) {
                         console.log("用户名之前不存在，已新建账号");
@@ -77,7 +92,7 @@ MongoClient.connect(DB_CONN_STR, function (err, db) {
                 } else {
                     console.log(docs);
                     S_VALUE = docs[0].SpecialValue;
-                    console.log("S_VALUE"+S_VALUE);
+                    console.log("S_VALUE" + S_VALUE);
                     console.log("用户名已存在，载入之前进度");
                 }
             });
@@ -89,14 +104,25 @@ MongoClient.connect(DB_CONN_STR, function (err, db) {
                 res.write(docs[0].content);
                 res.end();
             })
+        } else if (typeof (url_path.query.s_value) === 'string') {
+            console.log(url_path.query.s_value);
+            console.log(url_path.query.username);
+            updateDocument(db, 'UserInfo', 'Username', url_path.query.username, 'SpecialValue', Number(url_path.query.s_value), function () {
+                res.write("保存成功！");
+                res.end();
+
+            });
         } else { // get 无query
             if (pathname === "/" || pathname === "/index.htm") {
                 pathname = 'index.html';
             }
 
             var filePath = path.join(__dirname, pathname);
+            console.log('pathname:' + pathname);
             console.log('filePath:' + filePath);
-
+            res.writeHead(200, {
+                'Set-Cookie': ['Username =' + USERNAME, 'SpecialValue=' + S_VALUE]
+            });
             fs.readFile(filePath, function (err, content) {
                 if (err) {
                     console.log('Failed to read');
@@ -106,9 +132,7 @@ MongoClient.connect(DB_CONN_STR, function (err, db) {
                     res.end();
                     return;
                 }
-                res.writeHead(200, {
-                    'Set-Cookie': ['Username =' + USERNAME, 'SpecialValue=' + S_VALUE]
-                });
+
                 res.write(content);
                 res.end();
             });
