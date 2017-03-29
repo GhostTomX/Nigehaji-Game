@@ -43,11 +43,11 @@ $(document).ready(function () {
         var cookies = document.cookie.split(';');
         for (var i = 0; i < cookies.length; i++) {
             if ((cookies[i].split('=')[0] === 'Username')||(cookies[i].split('=')[0] === ' Username')  ){
-                USERNAME = Number(cookies[i].split('=')[1]);
+                USERNAME = cookies[i].split('=')[1];
                 console.log(USERNAME);
             };
             if (cookies[i].split('=')[0] === ' SpecialValue') { /////// 注意%%%%%%这里 SpecialValue前面有空格！！！！
-                SPECIALVALUE = cookies[i].split('=')[1];
+                SPECIALVALUE = Number(cookies[i].split('=')[1]);
                 break;
             };
         }
