@@ -1,17 +1,16 @@
 <!DOCTYPE HTML>
 <html lang="zh">
+
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <style>
         video {
             position: absolute;
             z-index: 1;
-/*            filter: opacity(80%);*/
             position: absolute;
         }
         
         form {
-            
             color: white;
             left: 1050px;
             top: 200px;
@@ -22,16 +21,16 @@
             padding-top: 40px;
             color: white;
         }
-        #login{
+        
+        #login {
             filter: opacity(40%);
-            width:270px;
-            height:410px;
+            width: 270px;
+            height: 410px;
             position: absolute;
-            background-color:  white;
-            left:1035px;
-            top:140px;
+            background-color: white;
+            left: 1035px;
+            top: 140px;
             z-index: 2;
-            
         }
         
         label,
@@ -87,7 +86,7 @@
         }
         
         input[type="submit"]:hover {
-            background-color:aliceblue;
+            background-color: aliceblue;
         }
         
         label {
@@ -122,22 +121,25 @@
             background-image: url('http://www.geertjanhendriks.nl/codepen/form/octo-error.png');
             color: red;
         }
+        
         #headline {
-            position:absolute;
+            position: absolute;
             z-index: 3;
-            left:1050px;
-            top:150px;
+            left: 1050px;
+            top: 150px;
         }
+
     </style>
 </head>
+
 <body>
     <video controls="controls" autoplay="autoplay" loop="loop">
 <!--        <source src="Media/01.mp4" type="video/mp4" /> -->
         <source src="Media/01.ogg" type="video/ogg" /> Your browser does not support the video tag.
     </video>
-    <div id ='login'></div>
-    <div id = "headline"><img src="Media/images/headline.jpg" height = "100px";></div>
-    <form id="waterform" method="post" action = "home.html">
+    <div id='login'></div>
+    <div id="headline"><img src="Media/images/headline.jpg" height="100px" ;></div>
+    <form id="waterform" method="post" action="home.html">
 
         <div class="formgroup" id="name-form">
             <label for="name">用户名</label>
@@ -148,10 +150,10 @@
             <label for="email">密码</label>
             <input type="password" name="pw" value="admin">
         </div>
-        <input type="submit" value="登录" href = "index.html"/>
+        <input type="submit" value="登录" href="index.html" />
     </form>
 
-    
+
 
 
 </body>

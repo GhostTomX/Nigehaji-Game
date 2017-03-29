@@ -40,10 +40,19 @@ $(document).ready(function () {
     stateShow();
 
     function stateShow() {
-        alert(document.cookie);
         var cookies = document.cookie.split(';');
-        USERNAME = cookies[0].split('=')[1];
-        SPECIALVALUE = Number(cookies[1].split('=')[1]);
+        for (var i = 0; i < cookies.length; i++) {
+            if (cookies[i].split('=')[0] === 'Username') {
+                USERNAME = Number(cookies[i].split('=')[1]);
+                console.log(USERNAME);
+            };
+            if (cookies[i].split('=')[0] === ' SpecialValue') { /////// 注意%%%%%%这里 SpecialValue前面有空格！！！！
+                SPECIALVALUE = cookies[i].split('=')[1];
+                break;
+            };
+        }
+        //        USERNAME = cookies[0].split('=')[1];
+        //        SPECIALVALUE = Number(cookies[1].split('=')[1]);
         //本地
         //        USERNAME = cookies[0].split('=')[1];
         //        SPECIALVALUE = Number(cookies[1].split('=')[1]);
@@ -87,10 +96,10 @@ $(document).ready(function () {
                             $("#conversation").css("visibility", "visible");
                             $("#conversation").append(words[counterOfConv]);
                             counterOfConv += 1;
-                            if (counterOfConv%2 === 1){
+                            if (counterOfConv % 2 === 1) {
                                 $("#hiconversation").css("visibility", "visible");
                                 $("#miconversation").css("visibility", "hidden");
-                            }else{
+                            } else {
                                 $("#miconversation").css("visibility", "visible");
                                 $("#hiconversation").css("visibility", "hidden");
                             }
