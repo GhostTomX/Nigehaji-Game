@@ -40,10 +40,10 @@ $(document).ready(function () {
     stateShow();
 
     function stateShow() {
-        //        alert(document.cookie);
+        alert(document.cookie);
         var cookies = document.cookie.split(';');
-        USERNAME = cookies[1].split('=')[1];
-        SPECIALVALUE = Number(cookies[2].split('=')[1]);
+        USERNAME = cookies[0].split('=')[1];
+        SPECIALVALUE = Number(cookies[1].split('=')[1]);
         //本地
         //        USERNAME = cookies[0].split('=')[1];
         //        SPECIALVALUE = Number(cookies[1].split('=')[1]);
