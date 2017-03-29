@@ -120,9 +120,19 @@ MongoClient.connect(DB_CONN_STR, function (err, db) {
             var filePath = path.join(__dirname, pathname);
             console.log('pathname:' + pathname);
             console.log('filePath:' + filePath);
-            res.writeHead(200, {
-                'Set-Cookie': ['Username =' + USERNAME, 'SpecialValue=' + S_VALUE]
+            if (pathname === "/home.html") {
+                res.writeHead(200, {
+                    'Set-Cookie': ['Username =' + USERNAME, 'SpecialValue=' + S_VALUE]
+                });
+            }
+            else{
+                 res.writeHead(200, {
             });
+            }
+
+//            res.writeHead(200, {
+//                'Set-Cookie': ['Username =' + USERNAME, 'SpecialValue=' + S_VALUE]
+//            });
             fs.readFile(filePath, function (err, content) {
                 if (err) {
                     console.log('Failed to read');

@@ -6,11 +6,12 @@
         video {
             position: absolute;
             z-index: 1;
-            filter: opacity(80%);
+/*            filter: opacity(80%);*/
             position: absolute;
         }
         
         form {
+            
             color: white;
             left: 1050px;
             top: 200px;
@@ -20,6 +21,17 @@
             width: 500px;
             padding-top: 40px;
             color: white;
+        }
+        #login{
+            filter: opacity(40%);
+            width:270px;
+            height:410px;
+            position: absolute;
+            background-color:  white;
+            left:1035px;
+            top:140px;
+            z-index: 2;
+            
         }
         
         label,
@@ -123,6 +135,7 @@
 <!--        <source src="Media/01.mp4" type="video/mp4" /> -->
         <source src="Media/01.ogg" type="video/ogg" /> Your browser does not support the video tag.
     </video>
+    <div id ='login'></div>
     <div id = "headline"><img src="Media/images/headline.jpg" height = "100px";></div>
     <form id="waterform" method="post" action = "home.html">
 
@@ -138,7 +151,7 @@
         <input type="submit" value="登录" href = "index.html"/>
     </form>
 
-
+    
 
 
 </body>
